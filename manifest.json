@@ -6,7 +6,7 @@
 , "short_name"              : "__MSG_name_shrt__"
 , "description"             : "__MSG_name_desc__"
 
-, "version"                 : "1.3.0.2"
+, "version"                 : "1.3.1.1"
 , "homepage_url"            : "https://github.com/eladkarako/Chrome-Extension-Remove-Rude-Redirects/issues/"
 , "author"                  : "Elad Karako"
 
