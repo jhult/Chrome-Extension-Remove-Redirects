@@ -15,11 +15,6 @@
                               , "webRequest"
                               , "webRequestBlocking"
                               , "declarativeWebRequest"
-                              , "gcm"
-                              , "activeTab"
-                              , "experimental"
-                              , "webNavigation"
-                              , "nativeMessaging"
                               ]
 , "background"              : { "scripts":    [ "resources/background_pre.js"
                                               , "resources/background_response_manipulation.js"
