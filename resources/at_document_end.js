@@ -10,7 +10,7 @@
 NodeList.prototype.forEach = Array.prototype.forEach;
 (function(window, document, tmp, elements){
 
-  if(0 === elements.length) return;
+  if(null === elements || 0 === elements.length) return;
 
   /* notify chrome-extension, so the number will be shown as a "badge" */
   chrome.runtime.sendMessage({number_of_elements_with_redirects: elements.length});
