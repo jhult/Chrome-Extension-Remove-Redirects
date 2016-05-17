@@ -27,5 +27,12 @@ NodeList.prototype.forEach = Array.prototype.forEach;
   window
 , document
 , null
-, document.querySelectorAll('[href][onmousedown*="rwt("], [href][onmousedown*=".href="], [href][onmousedown*="window.open"]')
+, document.querySelectorAll(
+    [  '[href][onmousedown*="rwt("]'
+    ,  '[href][onmousedown*=".href="]'
+    ,  '[href][onmousedown*="window.open("]' 
+    ,  '[href][onmousedown*="location.replace("]'
+    ,  '[href][onmousedown*="location="]'
+    ].join(', ')
+  )
 ));
