@@ -18,6 +18,7 @@ var   headers_to_remove = [   "content-security-policy"
     , urls_to_match     = [ "*://*/*"]
     ;
 
+try{
 chrome.webRequest.onHeadersReceived.addListener(function(response){
   response = response.responseHeaders;
   
@@ -27,4 +28,4 @@ chrome.webRequest.onHeadersReceived.addListener(function(response){
   
   return response;
 }, {"urls": urls_to_match}, ["blocking", "responseHeaders"]);
-
+}catch(err){}
