@@ -12,8 +12,7 @@
 
 , "permissions"             : [ "*://*/*"
                               ]
-, "background"              : { "scripts":    [ "resources/background_pre.js"
-                                              , "resources/background_main.js"
+, "background"              : { "scripts":    [ "resources/background_main.js"
                                               ]
                               , "persistent": true 
                               }
