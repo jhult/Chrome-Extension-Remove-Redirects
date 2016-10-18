@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(function(incoming_message, sender_frame, re
   });
 
   chrome.browserAction.setBadgeText({
-      text:  String( incoming_message.number_of_elements_with_redirects )
+      text:  String( incoming_message.badge_data )
     , tabId: sender_frame.tab.id
   });
 

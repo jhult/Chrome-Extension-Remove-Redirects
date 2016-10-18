@@ -7,67 +7,82 @@
    ╚════════════════════════════════════════════════════════════════════╝
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
 
-(function(setInterval){
+(function(window, document, action, query){
   "use strict";
-  
-  setInterval(function(){
 
+  NodeList.prototype.forEach = Array.prototype.forEach;
 
-    (function(elements){
-      if(null === elements || 0 === elements.length) return;
+  action = function action(elements){
+    if(null === elements || 0 === elements.length) return;
 
-      /* notify chrome-extension, so the number will be shown as a "badge" */
-      chrome.runtime.sendMessage({number_of_elements_with_redirects: elements.length});
+    chrome.runtime.sendMessage({badge_data: elements.length});  /* Chrome API: badge over extension's icon. */
 
-      /* remove redirects in favor of real-link */
-      Array.prototype.forEach.call(elements, function(element){
-        var tmp;
-
-        /* remove non-attribute hooks by reparsing original node's-state from HTML source. */
-        if(null !== element.parentNode){
-          tmp = element.cloneNode(true);
-          element.parentNode.replaceChild(tmp, element);
-          element = tmp; 
-        }
-
-        /* remove attribute hooks, must be second to "cloneNode" above, since if the attribute was originated from the HTML the cloneNode will restore it.. */ 
+    elements.forEach(function(element){
+      setTimeout(function(){
+        /* quick fix */
         element.removeAttribute("onmousedown");
         element.removeAttribute("jsaction");
-        element.removeAttribute("onclick"); /* dangerous (but required for quora and other sites..). */
-                                            /* TODO: check before each removeAttribute, if it is needed. */
-        
-      });
-    }(
-      document.querySelectorAll(
-        [
-        /* Google (generic/images search + new HTML5 hooks flag) */
-           '[href]:not([href=""]):not([href^="#"])[onmousedown*="rwt("]'
-        ,  '[href]:not([href=""]):not([href^="#"])[jsaction*="mousedown"][jsaction*="keydown"]'
+        element.removeAttribute("onclick");
 
-        /* main issue: [Google|Outbrain|Taboola] uses it (last two Co. had copied it from Google..) */
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*="window.open("]' 
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*="parent.open("]' 
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*="self.open("]' 
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*="top.open("]' 
+        /* slow fix (event-unhook) (DOM heavy)*/
+          setTimeout(function(){
+            var tmp;
+            
+            if(null === element.parentNode) return;
+            
+            tmp = element.cloneNode(true);  /* restores original ("from HTML") state. */
+            element.parentNode.replaceChild(tmp, element);
+            element = tmp; 
 
-        /* generic and common way to do the same thing */
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*=".href="]'
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.replace("]'
-        ,  '[href]:not([href=""]):not([href^="#"])[onmousedown*="location="]'
+            /* run again (the node had restored due to the clone trick..) */
+            element.removeAttribute("onmousedown");
+            element.removeAttribute("jsaction");
+            element.removeAttribute("onclick");
+          }, 50);
+      }, 10);
+    });
+  }
+  
+  query = [ '[href]:not([href=""]):not([href^="#"])[onmousedown*="rwt("]'                        /* Google              */
+          , '[href]:not([href=""]):not([href^="#"])[jsaction*="mousedown"][jsaction*="keydown"]'
 
-        /* used on quora.com */
-        ,  '[href]:not([href=""]):not([href^="#"])[onclick*="openUrl("]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="window.open("]'                /* other (very common) */
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="self.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="top.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="parent.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="frames.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*=".href="]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location="]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.replace("]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.reload("]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.assign("]'
 
-        /* uncommon but in use.*/
-        ,  '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]' 
-        ,  '[href]:not([href=""]):not([href^="#"])[onclick*="parent.open("]' 
-        ,  '[href]:not([href=""]):not([href^="#"])[onclick*="self.open("]' 
-        ,  '[href]:not([href=""]):not([href^="#"])[onclick*="top.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]'                    /* other (uncommon)    */
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="self.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="top.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="parent.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="frames.open("]' 
+          , '[href]:not([href=""]):not([href^="#"])[onclick*=".href="]'
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="location="]'
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="location.replace("]'
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="location.reload("]'
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="location.assign("]'
 
-        ].join(', ')
-      )
-    ));
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="openUrl("]'                        /* quora.com           */
+          ].join(', ');
 
+  
+  /* run */
+  
+  action(document.querySelectorAll(query));            /* run asap       */
 
-  }, 7000);
-}(self.setInterval));
+  setInterval(function(){   /* repeat task */
+    action(document.querySelectorAll(query));          /* repeating task */
+  }, 5000);
+
+}(
+  self              /* window    */
+, self.document     /* document  */
+, null              /* action    */
+, null              /* query     */
+));
