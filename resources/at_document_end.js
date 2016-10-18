@@ -53,17 +53,21 @@
           , '[href]:not([href=""]):not([href^="#"])[onmousedown*="frames.open("]' 
           , '[href]:not([href=""]):not([href^="#"])[onmousedown*=".href="]'
           , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location="]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.href="]'
+          , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.pathname="]'
           , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.replace("]'
           , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.reload("]'
           , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.assign("]'
 
-          , '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]'                    /* other (uncommon)    */
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]'                    /* other (uncommon) */
           , '[href]:not([href=""]):not([href^="#"])[onclick*="self.open("]' 
           , '[href]:not([href=""]):not([href^="#"])[onclick*="top.open("]' 
           , '[href]:not([href=""]):not([href^="#"])[onclick*="parent.open("]' 
           , '[href]:not([href=""]):not([href^="#"])[onclick*="frames.open("]' 
           , '[href]:not([href=""]):not([href^="#"])[onclick*=".href="]'
           , '[href]:not([href=""]):not([href^="#"])[onclick*="location="]'
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="location.href="]'
+          , '[href]:not([href=""]):not([href^="#"])[onclick*="location.pathname="]'
           , '[href]:not([href=""]):not([href^="#"])[onclick*="location.replace("]'
           , '[href]:not([href=""]):not([href^="#"])[onclick*="location.reload("]'
           , '[href]:not([href=""]):not([href^="#"])[onclick*="location.assign("]'
