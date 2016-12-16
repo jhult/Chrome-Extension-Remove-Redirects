@@ -32,6 +32,7 @@
   /* action #1 - common cases.   unhook inline-events (removeAttribute), de-attached events (cloneNode and removeAttribute) */
   (function(query, elements){
     elements = document.querySelectorAll(query);
+
     if(null === elements || 0 === elements.length) return;
     try{chrome.runtime.sendMessage({badge_data: elements.length});}catch(err){}  /* Chrome API: badge over extension's icon. */
     
@@ -40,11 +41,22 @@
       setTimeout(function(){
         element = clone_clean(element);          /* event unhook by clone clean (DOM heavy)*/
         element = remove_attributes(element);    /* run (again) since clone also restore inline-event hooks (onmousedown="javascript:....") */
-      }, 10);
+        
+        setTimeout(function(){                   /* DATA-URL to HREF (twitter and instagram) */
+          if(null !== element.getAttribute("data-url"))
+            element.href = element.getAttribute("data-url");
+            
+          if(null !== element.getAttribute("data-expanded-url"))
+            element.href = element.getAttribute("data-expanded-url");
+        }, 20);
+
+      }, 20);
     });
+
   }(
   [ '[href]:not([href=""]):not([href^="#"])[onmousedown*="rwt("]'                        /* Google              */
   , '[href]:not([href=""]):not([href^="#"])[jsaction*="mousedown"][jsaction*="keydown"]'
+
   , '[href]:not([href=""]):not([href^="#"])[onmousedown*="window.open("]'                /* other (very common) */
   , '[href]:not([href=""]):not([href^="#"])[onmousedown*="self.open("]' 
   , '[href]:not([href=""]):not([href^="#"])[onmousedown*="top.open("]' 
@@ -57,7 +69,8 @@
   , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.replace("]'
   , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.reload("]'
   , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.assign("]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]'                    /* other (uncommon) */
+
+  , '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]'                    /* other (uncommon)                      */
   , '[href]:not([href=""]):not([href^="#"])[onclick*="self.open("]' 
   , '[href]:not([href=""]):not([href^="#"])[onclick*="top.open("]' 
   , '[href]:not([href=""]):not([href^="#"])[onclick*="parent.open("]' 
@@ -69,7 +82,11 @@
   , '[href]:not([href=""]):not([href^="#"])[onclick*="location.replace("]'
   , '[href]:not([href=""]):not([href^="#"])[onclick*="location.reload("]'
   , '[href]:not([href=""]):not([href^="#"])[onclick*="location.assign("]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="openUrl("]'                        /* quora.com           */
+
+  , '[href]:not([href=""]):not([href^="#"])[onclick*="openUrl("]'                        /* quora.com                             */
+
+  , '[href]:not([href=""]):not([href^="#"])[data-url^="http"]'                           /* instagram / twitter ("t.co"/) links   */
+  , '[href]:not([href=""]):not([href^="#"])[data-expanded-url^="http"]'
   ].join(', ')
   , null
   ));
