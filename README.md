@@ -24,6 +24,9 @@
 ```
 Developer's HUB / Changelog
 
+1.6.0.7
+* engine update: improving identifying elements with invalid-href attribute.
+
 1.6.0.6
 + engine upgrade: replace short-links in instagram and twitter ("t.co/...") with real-links!
 

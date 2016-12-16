@@ -54,39 +54,39 @@
     });
 
   }(
-  [ '[href]:not([href=""]):not([href^="#"])[onmousedown*="rwt("]'                        /* Google              */
-  , '[href]:not([href=""]):not([href^="#"])[jsaction*="mousedown"][jsaction*="keydown"]'
+  [ '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="rwt("]'                        /* Google              */
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[jsaction*="mousedown"][jsaction*="keydown"]'
 
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="window.open("]'                /* other (very common) */
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="self.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="top.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="parent.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="frames.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*=".href="]'
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location="]'
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.href="]'
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.pathname="]'
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.replace("]'
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.reload("]'
-  , '[href]:not([href=""]):not([href^="#"])[onmousedown*="location.assign("]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="window.open("]'                /* other (very common) */
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="self.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="top.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="parent.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="frames.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*=".href="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="location="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="location.href="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="location.pathname="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="location.replace("]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="location.reload("]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="location.assign("]'
 
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="window.open("]'                    /* other (uncommon)                      */
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="self.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="top.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="parent.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="frames.open("]' 
-  , '[href]:not([href=""]):not([href^="#"])[onclick*=".href="]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="location="]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="location.href="]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="location.pathname="]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="location.replace("]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="location.reload("]'
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="location.assign("]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="window.open("]'                    /* other (uncommon)                      */
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="self.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="top.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="parent.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="frames.open("]' 
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*=".href="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.href="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.pathname="]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.replace("]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.reload("]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.assign("]'
 
-  , '[href]:not([href=""]):not([href^="#"])[onclick*="openUrl("]'                        /* quora.com                             */
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="openUrl("]'                        /* quora.com                             */
 
-  , '[href]:not([href=""]):not([href^="#"])[data-url^="http"]'                           /* instagram / twitter ("t.co"/) links   */
-  , '[href]:not([href=""]):not([href^="#"])[data-expanded-url^="http"]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-url^="http"]'                           /* instagram / twitter ("t.co"/) links   */
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url^="http"]'
   ].join(', ')
   , null
   ));
