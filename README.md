@@ -9,10 +9,11 @@
 <img src="resources/screenshot_2.png"/>
 <img src="resources/screenshot_3.png"/>
 <img src="resources/screenshot_4.png"/>
+<img src="resources/screenshot_5.png"/>
 
 <h3>This Extension Is A Great Way To Protect Your Privacy.</h3>
 
-<img src="resources/screenshot_5.png"/>
+<img src="resources/screenshot_6.png"/>
 
 <hr/>
 
