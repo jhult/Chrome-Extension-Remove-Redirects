@@ -24,6 +24,12 @@
 ```
 Developer's HUB / Changelog
 
+1.8.0.1
+* project architecture, support execution on pages with and without JavaScript support, no code-duplication using the scope of the chrome-extension.
+
+1.7.0.1
+* engine upgrade, early start even before all text-content written (for large pages). including improved heuristics on every rule, especially for pages with no-javascript, and asynchronous code-block execution after DOM-nodes modifications.
+
 1.6.0.8
 * updating identification rules for twitter links, to a wider match, include a fix for URLs with a missing protocol.
 
