@@ -43,11 +43,11 @@
         element = remove_attributes(element);    /* run (again) since clone also restore inline-event hooks (onmousedown="javascript:....") */
         
         setTimeout(function(){                   /* DATA-URL to HREF (twitter and instagram) */
-          if(null !== element.getAttribute("data-url"))
-            element.href = element.getAttribute("data-url");
-            
-          if(null !== element.getAttribute("data-expanded-url"))
-            element.href = element.getAttribute("data-expanded-url");
+          var tmp = element.getAttribute("data-url") || element.getAttribute("data-expanded-url");
+          if (null === tmp) return;
+          
+          tmp = (-1 === tmp.indexOf(":") ? "http://" : "") + tmp;
+          element.href = tmp;
         }, 20);
 
       }, 20);
@@ -85,8 +85,8 @@
 
   , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="openUrl("]'                        /* quora.com                             */
 
-  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-url^="http"]'                           /* instagram / twitter ("t.co"/) links   */
-  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url^="http"]'
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-url]'                                   /* instagram / twitter ("t.co"/) links   */
+  , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url]'
   ].join(', ')
   , null
   ));

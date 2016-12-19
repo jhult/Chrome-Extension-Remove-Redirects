@@ -24,6 +24,9 @@
 ```
 Developer's HUB / Changelog
 
+1.6.0.8
+* updating identification rules for twitter links, to a wider match, include a fix for URLs with a missing protocol.
+
 1.6.0.7
 * engine update: improving identifying elements with invalid-href attribute.
 
