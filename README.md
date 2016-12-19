@@ -24,6 +24,9 @@
 ```
 Developer's HUB / Changelog
 
+1.9.0.2
+* operation-flag renamed.
+
 1.9.0.1
 + rebrand.
 
