@@ -1,10 +1,10 @@
-<h1> <img src="resources/icon.png" height="64" width="64"/> Chrome-Extension-Remove-Rude-Redirects</h1>
+<h1> <img src="resources/icon.png" height="64" width="64"/> Chrome-Extension-Remove-Redirects</h1>
 
 <h2>A Complementary Chrome-Extension For <a href="https://chrome.google.com/webstore/detail/cjpalhdlnbpafiamejdnhcphjbkeiagm">uBlock Origin</a> and <a href="https://chrome.google.com/webstore/detail/gighmmpiobklfepjocnamgkkbiglidom">AdBlock</a></h2>
 
 <img src="resources/screenshot_1.png"/>
 
-<h4>Remove Rude Redirects, That Are Hidden in OnMouseDown Events And That Are Modifying The HREF Property On-The-Fly. Common In All Of Google-Search, Outbrain And Taboola Crappy Recommendations, The Extension Also Tells You How-Much Redirects Were Hidden In The Page And Were Removed :]</h4>
+<h4>Remove Redirects, That Are Hidden in OnMouseDown Events And That Are Modifying The HREF Property On-The-Fly. Common In All Of Google-Search, Outbrain And Taboola Crappy Recommendations, The Extension Also Tells You How-Much Redirects Were Hidden In The Page And Were Removed :]</h4>
 
 <img src="resources/screenshot_2.png"/>
 <img src="resources/screenshot_3.png"/>
@@ -23,6 +23,9 @@
 
 ```
 Developer's HUB / Changelog
+
+1.9.0.1
++ rebrand.
 
 1.8.0.1
 * project architecture, support execution on pages with and without JavaScript support, no code-duplication using the scope of the chrome-extension.
