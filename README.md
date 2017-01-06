@@ -24,6 +24,12 @@
 ```
 Developer's HUB / Changelog
 
+1.9.1.4
++ error handling
+
+1.9.1.3
+* adding prototyping for browser compatibility.
+
 1.9.1.2
 * tag-number updated instead of overriding it.
 

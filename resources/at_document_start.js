@@ -7,6 +7,8 @@
    ╚════════════════════════════════════════════════════════════════════╝
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
 
+NodeList.prototype.forEach = Array.prototype.forEach;
+
 counter_total = 0;
 
 query = [
@@ -88,5 +90,5 @@ function action(){
 }
 
 
-action();
-setInterval(action, 500); /*only available in pages having JavaScript support*/
+try{  action();                               }catch(err){}
+try{  interval_id = setInterval(action, 500); }catch(err){ clearInterval(interval_id); }      /*only available in pages having JavaScript support*/
