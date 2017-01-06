@@ -24,6 +24,9 @@
 ```
 Developer's HUB / Changelog
 
+1.9.1.2
+* tag-number updated instead of overriding it.
+
 1.9.0.2
 * operation-flag renamed.
 
