@@ -47,7 +47,7 @@ query = [
 
 function for_twitter(element){
   tmp = element.getAttribute("data-url") || element.getAttribute("data-expanded-url");      /* twitter instagram pages*/
-  if(null === tmp) return;
+  if(tmp === null) return;
   tmp = (-1 === tmp.indexOf(":") ? "http://" : "") + tmp;                                 /* fix missing protocol */
   element.setAttribute("href", tmp);                                                      /* hard overwrite       */
   element.setAttribute("done-remove-redirects", "");                                                       /* flag to make sure to avoid infinate loop in-case the real-url also includes "/url?q=" in it.  */
@@ -56,7 +56,7 @@ function for_twitter(element){
 
 function for_google_nojs(element){
   tmp = element.href.match(/\/\/www\.google\.[^\/]+\/url\?q\=([^\&]+)/i);                   /* Google page (redirects with no javascript)*/
-  if(null === tmp || "string" !== typeof tmp[1]) return;
+  if(tmp === null || typeof tmp[1] !== "string") return;
   tmp = tmp[1];
   tmp = decodeURIComponent(tmp);
   element.setAttribute("href", tmp); /* hard overwrite */
@@ -66,7 +66,7 @@ function for_google_nojs(element){
 
 function action(){
   var elements = document.querySelectorAll(query);
-  if(null === elements || 0 === elements.length) return;
+  if(elements === null || elements.length === 0) return;
   counter_total += elements.length;
   try{chrome.runtime.sendMessage({badge_data: counter_total});}catch(err){} /* update extension's badge. */
 
