@@ -44,10 +44,10 @@ query = [
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url]:not([data-expanded-url=""]):not([done-remove-redirects])'   
 ].join(', ');
 
-  tmp = (-1 === tmp.indexOf(":") ? "http://" : "") + tmp;                                 /* fix missing protocol */
 function for_twitter(element) {
   var tmp = element.getAttribute("data-url") || element.getAttribute("data-expanded-url"); // twitter/instagram pages
   if (tmp) {
+    tmp = new URL(tmp, location); // fix missing protocol
     element.setAttribute("href", tmp); // hard overwrite
     element.setAttribute("done-remove-redirects", ""); // flag to make sure to avoid infinate loop in-case the real-url also includes "/url?q=" in it
   }
