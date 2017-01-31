@@ -44,27 +44,29 @@ query = [
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url]:not([data-expanded-url=""]):not([done-remove-redirects])'   
 ].join(', ');
 
-  if(tmp === null) return;
   tmp = (-1 === tmp.indexOf(":") ? "http://" : "") + tmp;                                 /* fix missing protocol */
 function for_twitter(element) {
   tmp = element.getAttribute("data-url") || element.getAttribute("data-expanded-url"); // twitter/instagram pages
+  if (tmp) {
     element.setAttribute("href", tmp); // hard overwrite
     element.setAttribute("done-remove-redirects", ""); // flag to make sure to avoid infinate loop in-case the real-url also includes "/url?q=" in it
+  }
 }
 
 function for_google_nojs(element) {
   tmp = element.href.match(/\/\/www\.google\.[^\/]+\/url\?q\=([^\&]+)/i); // Google page (redirects with no JS)
+  if(tmp && typeof tmp[1] === "string") {
     tmp = tmp[1];
     tmp = decodeURIComponent(tmp);
     element.setAttribute("href", tmp); // hard overwrite
     element.setAttribute("done-remove-redirects", ""); // flag to make sure to avoid infinate loop in-case the real-url also includes "/url?q=" in it
 
-  if(tmp === null || typeof tmp[1] !== "string") return;
+  }
 }
 
 function action(){
   var elements = document.querySelectorAll(query);
-  if(elements === null || elements.length === 0) return;
+  if (elements && elements.length > 0) {
     counter_total += elements.length;
     try { chrome.runtime.sendMessage( {badge_data: counter_total} ); } catch(err){} // update extension's badge
 
@@ -87,6 +89,7 @@ function action(){
       }, 50);
     });
   }
+}
 
 try { action(); } catch(err){}
 try { interval_id = setInterval(action, 500); } catch(err) { clearInterval(interval_id); } // only available in pages having JS-support
