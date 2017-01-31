@@ -38,10 +38,10 @@ query = [
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.replace("]'
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.reload("]'
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="location.assign("]'
-, '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-url]:not([data-url=""]):not([done-remove-redirects])'                      /* twitter/instagram links ("t.co"/) links   */
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onclick*="openUrl("]' // quora.com
-, '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url]:not([data-expanded-url=""]):not([done-remove-redirects])'   
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("]):not([onclick]):not([onmousedown]):not([jsaction])[href^="/url?q="]:not([done-remove-redirects])' // Google with no JS URL - must be verified to be Google, using '.href'; this is special case, and a little bit wasteful, since I KNOW there is NO onclick,onmousedown(etc..) handles due to it is being in no JS page, but to make the entire code at here more unified- I WILL STILL include this specific case as if it is still required to be handled-cleaned
+, '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-url]:not([data-url=""]):not(.aui-button):not([done-remove-redirects])' // ignore Atlassian products (.aui-button)
+, '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[data-expanded-url]:not([data-expanded-url=""]):not([done-remove-redirects])' // twitter/instagram links ("t.co"/) links
 ].join(', ');
 
 function for_twitter(element) {
