@@ -46,7 +46,7 @@ query = [
 
   tmp = (-1 === tmp.indexOf(":") ? "http://" : "") + tmp;                                 /* fix missing protocol */
 function for_twitter(element) {
-  tmp = element.getAttribute("data-url") || element.getAttribute("data-expanded-url"); // twitter/instagram pages
+  var tmp = element.getAttribute("data-url") || element.getAttribute("data-expanded-url"); // twitter/instagram pages
   if (tmp) {
     element.setAttribute("href", tmp); // hard overwrite
     element.setAttribute("done-remove-redirects", ""); // flag to make sure to avoid infinate loop in-case the real-url also includes "/url?q=" in it
@@ -54,13 +54,12 @@ function for_twitter(element) {
 }
 
 function for_google_nojs(element) {
-  tmp = element.href.match(/\/\/www\.google\.[^\/]+\/url\?q\=([^\&]+)/i); // Google page (redirects with no JS)
+  var tmp = element.href.match(/\/\/www\.google\.[^\/]+\/url\?q\=([^\&]+)/i); // Google page (redirects with no JS)
   if(tmp && typeof tmp[1] === "string") {
     tmp = tmp[1];
     tmp = decodeURIComponent(tmp);
     element.setAttribute("href", tmp); // hard overwrite
     element.setAttribute("done-remove-redirects", ""); // flag to make sure to avoid infinate loop in-case the real-url also includes "/url?q=" in it
-
   }
 }
 
@@ -70,9 +69,6 @@ function action(){
     counter_total += elements.length;
     try { chrome.runtime.sendMessage( {badge_data: counter_total} ); } catch(err){} // update extension's badge
 
-
-    setTimeout(function(){    /*setTimeout run only if there is a JS support on the page. cloneNode trick will break the "for_twitter" and "for_google_nojs", there-for it is only in the setTimeout block which will be executed on a JS-supported page, since with JS-support it will not break the "for_twitter" and "for_google_nojs". */
-      tmp = element.cloneNode(true);
     elements.forEach(function(element){
       element.removeAttribute("onmousedown");
       element.removeAttribute("jsaction");
@@ -80,6 +76,8 @@ function action(){
       for_twitter(element);
       for_google_nojs(element);
 
+      setTimeout(function(){ // will only run if there is a JS-support on the page
+        var tmp = element.cloneNode(true); // will break the "for_twitter" and "for_google_nojs"; therefore, it is only in the setTimeout block which will be executed on a JS-supported page, since with JS-support it will not break the "for_twitter" and "for_google_nojs"
         element.parentNode.replaceChild(tmp, element);
         element.removeAttribute("onmousedown"); // must be redo
         element.removeAttribute("jsaction");
