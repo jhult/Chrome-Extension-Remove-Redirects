@@ -12,7 +12,8 @@ NodeList.prototype.forEach = Array.prototype.forEach;
 counter_total = 0;
 
 query = [
-  '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="rwt("]' // Google
+  '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="rc("]' // Yandex
+, '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="rwt("]' // Google
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[jsaction*="mousedown"][jsaction*="keydown"]'
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="window.open("]' // other (very common)
 , '[href]:not([href=""]):not([href^="#"]):not([href*="void("])[onmousedown*="self.open("]' 
